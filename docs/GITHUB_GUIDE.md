@@ -72,15 +72,30 @@ git config --global user.email "your.email@example.com"
 
 ---
 
-## 5. GitHub Pages 호스팅 가이드
-GitHub Pages를 통해 정적 웹 사이트를 호스팅할 수 있습니다.
+## 5. GitHub Pages 호스팅 및 배포 가이드
+프로젝트를 정적 웹 사이트로 호스팅하며, `gh-pages` 패키지를 통해 배포를 자동화합니다.
 
-1. **빌드 경로 설정**: 저장소의 `/dist` 또는 `/docs` 폴더에 빌드 결과물이 위치하도록 합니다.
-2. **GitHub 설정**:
-   - `Settings` > `Pages` > `Build and deployment` > `Source`에서 **Deploy from a branch** 선택.
-   - `Branch`를 `main`으로 설정하고 폴더는 `/dist` (또는 지정 경로)를 선택합니다.
-3. **배포**: 설정 저장 시 GitHub Action이 자동으로 사이트를 배포합니다.
-   * *참고: 라우팅 오류 방지를 위해 빌드 시 상대 경로('./') 설정이 필수입니다.*
+### 5.1 사전 설정 (완료됨)
+1. **상대 경로 설정**: `vite.config.ts`에 `base: './'`를 추가하여 에셋 경로 문제를 방지합니다.
+2. **배포 브랜치**: `gh-pages` 브랜치를 배포 전용 브랜치로 사용합니다.
+
+### 5.2 자동 배포 명령어
+터미널에서 다음 명령어를 실행하면 빌드부터 배포까지 한 번에 완료됩니다.
+```bash
+npm run deploy
+```
+- **작동 원리**:
+  1. `predeploy`: `npm run build`를 실행하여 `dist/renderer` 폴더에 최신 결과물을 생성합니다.
+  2. `deploy`: `gh-pages` 패키지가 `dist/renderer` 폴더의 내용을 원격 저장소의 `gh-pages` 브랜치로 푸시합니다.
+
+### 5.3 GitHub 저장소 설정 확인
+1. GitHub 저장소의 `Settings` > `Pages` 메뉴로 이동합니다.
+2. `Build and deployment` > `Source`가 **Deploy from a branch**로 되어 있는지 확인합니다.
+3. `Branch`가 `gh-pages`로, 폴더가 `/(root)`로 설정되어 있어야 합니다.
+
+### 5.4 주의 사항
+- **메인 브랜치 유지**: `npm run deploy`는 현재 로컬의 빌드 결과물만 배포 브랜치에 올리므로, `main` 브랜치의 소스 코드는 영향을 받지 않습니다.
+- **배포 반영 시간**: 명령 실행 후 실제 사이트에 반영되기까지 약 1~2분의 시간이 소요될 수 있습니다.
 
 ---
 

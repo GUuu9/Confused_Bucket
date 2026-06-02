@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(() => {
   return {
+    base: './',
     root: path.resolve(__dirname, 'src/renderer'),
     publicDir: 'public',
     build: {
