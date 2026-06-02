@@ -1,0 +1,303 @@
+:root {
+  --primary: #4f46e5;
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-dim: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
+  --input-bg: #0f172a;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.danger-btn {
+  background: #ef4444;
+  color: white;
+}
+.danger-btn:hover {
+  background: #dc2626;
+}
+
+.secondary-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.primary-btn {
+  background: var(--primary);
+}
+
+input, textarea, select {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  padding: 0.6rem;
+  color: var(--text);
+  border-radius: 0.4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stock-view {
+  padding: 1rem;
+}
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.portfolio-summary {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--card-bg);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .portfolio-summary {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.portfolio-summary span {
+  font-weight: bold;
+  color: var(--text);
+}
+
+.portfolio-list {
+  margin: 2rem 0;
+  background: var(--card-bg);
+  border-radius: 0.8rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.list-header:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.list-header h4 {
+  margin: 0;
+}
+
+#portfolio-content {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+#portfolio-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 400px;
+}
+
+#portfolio-table th, #portfolio-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+#portfolio-table th {
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#portfolio-table .table-current {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.3rem;
+  width: 80px;
+  border-radius: 0.4rem;
+}
+
+.table-price-info {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+}
+
+.stock-grid {
+  display: grid;
+  /* 카드 크기가 너무 작아지지 않도록 minmax 값을 조정하고, 
+     컨테이너 폭에 맞게 자동으로 랩핑되도록 설정 */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.stock-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* width: 100%; -> 그리드 아이템이므로 자동으로 100%를 차지함 */
+  overflow: hidden;
+  position: relative;
+  min-width: 0; /* 그리드 아이템이 컨테이너를 넘어가는 것 방지 */
+}
+
+
+.add-card {
+  border: 2px dashed var(--border);
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-card:hover {
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+.add-btn {
+  background: var(--primary);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn, .remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.edit-btn:hover { color: var(--primary); }
+.remove-btn:hover { color: #ef4444; }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 250px;
+  word-break: break-all;
+}
+
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.grid-inputs label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  width: 100%;
+}
+
+.grid-inputs .full {
+  grid-column: span 2;
+}
+
+.total-invested {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.performance {
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
