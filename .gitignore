@@ -1,6 +1,6 @@
 # 의존성 패키지
 node_modules/
-dist/
+# dist/
 dist-electron/
 release/
 venv/

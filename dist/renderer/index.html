@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confused Bucket</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" crossorigin src="/assets/main-C-B07Mxt.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DFlSg1Qf.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Dashboard</h1>
+    </header>
+
+    <!-- Detail View -->
+    <div id="detail-view" style="display: none;">
+      <header class="detail-header">
+        <button class="back-btn" id="nav-back"><i data-lucide="arrow-left"></i> Back to Dashboard</button>
+      </header>
+      <div id="test-content" class="network-view"></div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard-view" class="grid">
+      <div class="card" id="nav-stock"><h3><i data-lucide="chart-line"></i> STOCK</h3><span class="badge">Web</span></div>
+    </div>
+  </div>
+  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
