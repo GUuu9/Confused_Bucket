@@ -37,11 +37,11 @@ export class RendererRegistry {
     
     // 2. ViewModel Layer
     container.register('StockViewModel', new StockViewModel(
-        container.get('httpRepository'), 
-        container.get('FileRepository'), 
-        container.get('compressRepository'), 
-        container.get('cryptoRepository'), // 수정됨
-        container.get('StorageRepository')
+      container.get('httpRepository'), 
+      container.get('FileRepository'), 
+      container.get('compressRepository'), 
+      container.get('cryptoRepository'), // 수정됨
+      container.get('StorageRepository')
     ));
 
     

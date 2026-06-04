@@ -14,8 +14,8 @@ export class NavController {
   ) {}
 
   public init() {
-    // 초기 화면으로 StockView 설정
-    this.navigator.navigate(this.views.stockView);
+    // 초기 화면으로 대시보드 설정
+    this.navigator.showDashboard();
 
     document.addEventListener('click', (event) => {
       const target = (event.target as HTMLElement).closest('.card') as HTMLElement || event.target as HTMLElement;
